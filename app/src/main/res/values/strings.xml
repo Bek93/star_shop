@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Star App</string>
+    <string name="onboarding_email">Email</string>
+    <string name="onboarding_password">Password</string>
+    <string name="login_btn_title">Login</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="complete_btn_title">Complete</string>
+    <string name="onboarding_first_name">First name\n</string>
+    <string name="onboarding_last_name">Last name</string>
+    <string name="onboarding_phone_number">Phone number</string>
+    <string name="onboarding_password_confirm">Confirm Password</string>
+    <string name="onboarding_address">Address</string>
+    <string name="onboarding_post_code">Post code</string>
+    <string name="post_code_title">Get Post Code</string>
+    <string name="onboarding_address_details">101호</string>
+    <string name="send_code_btn_title">Send code</string>
+    <string name="verify_btn_title">Verify</string>
+    <string name="reset_password_btn_title">Reset password</string>
+</resources>
