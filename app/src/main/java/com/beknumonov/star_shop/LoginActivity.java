@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import com.beknumonov.star_shop.base.BaseActivity;
 import com.beknumonov.star_shop.base.RequestCallback;
 import com.beknumonov.star_shop.databinding.ActivityLoginBinding;
+import com.beknumonov.star_shop.dialog.MyDialogs;
+import com.beknumonov.star_shop.dialog.NoticeDialog;
 import com.beknumonov.star_shop.forgot_password.ForgotPasswordActivity;
 import com.beknumonov.star_shop.model.User;
 
@@ -120,8 +122,11 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                 call.enqueue(new RequestCallback<User>() {
                     @Override
                     protected void onResponseSuccess(Call<User> call, Response<User> response) {
-
+                        User loggedInUser = response.body();
                         // Save data to preference.
+                        preferenceManager.setValue("isLoggedIn", true);
+                        preferenceManager.setValue("user", loggedInUser);
+                        preferenceManager.setValue("accessToken", loggedInUser.getAccessToken());
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
@@ -129,7 +134,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
 
                     @Override
                     protected void onResponseFailed(Call<User> call, Throwable t) {
-
+                        MyDialogs.showNoticeDialog(getSupportFragmentManager(), "Username or Password is incorrect!");
                     }
                 });
 

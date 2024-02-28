@@ -17,7 +17,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 
 import com.beknumonov.star_shop.base.BaseActivity;
+import com.beknumonov.star_shop.base.RequestCallback;
 import com.beknumonov.star_shop.databinding.ActivityRegisterBinding;
+import com.beknumonov.star_shop.dialog.MyDialogs;
 import com.beknumonov.star_shop.model.User;
 
 import retrofit2.Call;
@@ -197,24 +199,23 @@ public class RegistrationActivity extends BaseActivity<ActivityRegisterBinding> 
                 User user = new User(email, password, firstName, lastName, phoneNumber, full_address);
                 Call<User> call = mainApi.createUser(user);
 
-                call.enqueue(new Callback<User>() {
+                call.enqueue(new RequestCallback<User>() {
                     @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        if (response.isSuccessful()) {
-                            User created = response.body();
-                            if (created != null) {
-                                preferenceManager.setValue("isLoggedIn", true);
-                                preferenceManager.setValue("user", created);
-                                preferenceManager.setValue("access_token", created.getAccessToken());
-                                moveToMain();
-                            }
+                    protected void onResponseSuccess(Call<User> call, Response<User> response) {
+                        User created = response.body();
+                        if (created != null) {
+                            preferenceManager.setValue("isLoggedIn", true);
+                            preferenceManager.setValue("user", created);
+                            preferenceManager.setValue("access_token", created.getAccessToken());
+                            moveToMain();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-
+                    protected void onResponseFailed(Call<User> call, Throwable t) {
+                        MyDialogs.showNoticeDialog(getSupportFragmentManager(), "Username is already taken");
                     }
+
                 });
 
 

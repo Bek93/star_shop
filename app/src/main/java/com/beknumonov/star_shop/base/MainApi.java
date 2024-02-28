@@ -1,5 +1,6 @@
 package com.beknumonov.star_shop.base;
 
+import com.beknumonov.star_shop.model.Banner;
 import com.beknumonov.star_shop.model.User;
 import com.google.gson.JsonObject;
 
@@ -20,5 +21,9 @@ public interface MainApi {
 
     @POST("/v1/user/")
     Call<User> createUser(@Body User user);
+
+
+    @GET("/v1/banner/")
+    Call<ArrayList<Banner>> getBanners();
 
 }
