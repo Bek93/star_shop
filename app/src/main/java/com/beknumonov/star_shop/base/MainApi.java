@@ -1,6 +1,9 @@
 package com.beknumonov.star_shop.base;
 
 import com.beknumonov.star_shop.model.Banner;
+import com.beknumonov.star_shop.model.Category;
+import com.beknumonov.star_shop.model.Classification;
+import com.beknumonov.star_shop.model.SubProduct;
 import com.beknumonov.star_shop.model.User;
 import com.google.gson.JsonObject;
 
@@ -25,5 +28,20 @@ public interface MainApi {
 
     @GET("/v1/banner/")
     Call<ArrayList<Banner>> getBanners();
+
+
+
+    /*Products*/
+
+    @GET("/v1/classification/")
+    Call<ArrayList<Classification>> getClassifications();
+
+    @GET("/v1/classification/{id}/category/")
+    Call<ArrayList<Category>> getCategories(@Path("id") int classificationId);
+
+
+    @GET("/v1/category/{id}/subproduct/")
+    Call<ArrayList<SubProduct>> getSubProducts(@Path("id") int categoryId);
+
 
 }

@@ -126,6 +126,8 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                         // Save data to preference.
                         preferenceManager.setValue("isLoggedIn", true);
                         preferenceManager.setValue("user", loggedInUser);
+                        preferenceManager.setValue("email", email);
+                        preferenceManager.setValue("password", password);
                         preferenceManager.setValue("accessToken", loggedInUser.getAccessToken());
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
