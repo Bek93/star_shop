@@ -36,7 +36,7 @@ public abstract class BaseActivity<T extends ViewBinding> extends AppCompatActiv
         setContentView(binding.getRoot());
         mainApi = ApiService.provideApi(MainApi.class, this);
         preferenceManager = PreferenceManager.getInstance(this);
-        //toolbar = binding.getRoot().findViewById(R.id.toolbar);
+        toolbar = binding.getRoot().findViewById(R.id.toolbar);
         //tvPageTitle = binding.getRoot().findViewById(R.id.pageTitle);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {

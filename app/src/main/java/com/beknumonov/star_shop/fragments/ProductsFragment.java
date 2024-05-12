@@ -1,5 +1,6 @@
 package com.beknumonov.star_shop.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.beknumonov.star_shop.activities.ProductListActivity;
 import com.beknumonov.star_shop.adapter.CategoryListAdapter;
 import com.beknumonov.star_shop.base.BaseFragment;
 import com.beknumonov.star_shop.base.RequestCallback;
@@ -56,10 +58,15 @@ public class ProductsFragment extends BaseFragment<FragmentProductsBinding> {
                     binding.topPanel.setVisibility(View.VISIBLE);
                     binding.tvCategoryBackBtn.setText("Category");
                     getSubProducts(itemId);
-                }else if (type.equals("SUBPRODUCT")){
+                } else if (type.equals("SUBPRODUCT")) {
 
 
                     // move to Product List. Intent to New Activity.
+                    Intent intent = new Intent(getActivity(), ProductListActivity.class);
+                    intent.putExtra("subProduct", itemId);
+                    startActivity(intent);
+
+
                 }
             }
         });
